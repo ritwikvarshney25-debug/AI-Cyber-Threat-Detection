@@ -174,51 +174,13 @@ st_autorefresh(
 
 st.markdown("---")
 
-# Load trained model
-
-import os
-from sklearn.ensemble import RandomForestClassifier
 
 # Load or Train Model
 
 model = joblib.load("model/trained_model.pkl")
 
-    # Load dataset
-    train_data = pd.read_csv(
-        "dataset/data.csv",
-        header=None
-    )
-
-    # Encode categorical columns
-    for col in train_data.columns:
-
-        le = LabelEncoder()
-
-        train_data[col] = le.fit_transform(
-            train_data[col].astype(str)
-        )
-
-    # Features and Labels
-    X = train_data.iloc[:, :-1]
-
-    y = train_data.iloc[:, -1]
-
-    # Train model
-    model = RandomForestClassifier()
-
-    model.fit(X, y)
-
-    # Create model folder
-    os.makedirs(
-        "model",
-        exist_ok=True
-    )
-
-    # Save model
-    joblib.dump(
-        model,
-        "model/trained_model.pkl"
-    )
+   # Load trained model
+model = joblib.load("model/trained_model.pkl")
 
 # Upload CSV
 uploaded_file = st.file_uploader("📂 Upload CSV File")
