@@ -40,6 +40,14 @@ accuracy = accuracy_score(y_test, y_pred)
 print("Model Accuracy:", accuracy)
 
 # Save model
-joblib.dump(model, "model/trained_model.pkl")
+
+import os
+
+os.makedirs("model", exist_ok=True)
+
+joblib.dump(
+    model,
+    "model/trained_model.pkl"
+)
 
 print("Model Saved Successfully")
