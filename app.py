@@ -177,6 +177,7 @@ st.markdown("---")
 # Load trained model
 
 import os
+from sklearn.ensemble import RandomForestClassifier
 
 # Load or Train Model
 
@@ -192,9 +193,40 @@ else:
         "⚠ Model file not found. Training new model..."
     )
 
-    os.system("python train_model.py")
+    # Load dataset
+    train_data = pd.read_csv(
+        "dataset/data.csv",
+        header=None
+    )
 
-    model = joblib.load(
+    # Encode categorical columns
+    for col in train_data.columns:
+
+        le = LabelEncoder()
+
+        train_data[col] = le.fit_transform(
+            train_data[col].astype(str)
+        )
+
+    # Features and Labels
+    X = train_data.iloc[:, :-1]
+
+    y = train_data.iloc[:, -1]
+
+    # Train model
+    model = RandomForestClassifier()
+
+    model.fit(X, y)
+
+    # Create model folder
+    os.makedirs(
+        "model",
+        exist_ok=True
+    )
+
+    # Save model
+    joblib.dump(
+        model,
         "model/trained_model.pkl"
     )
 
