@@ -175,7 +175,28 @@ st_autorefresh(
 st.markdown("---")
 
 # Load trained model
-model = joblib.load("model/trained_model.pkl")
+
+import os
+
+# Load or Train Model
+
+if os.path.exists("model/trained_model.pkl"):
+
+    model = joblib.load(
+        "model/trained_model.pkl"
+    )
+
+else:
+
+    st.warning(
+        "⚠ Model file not found. Training new model..."
+    )
+
+    os.system("python train_model.py")
+
+    model = joblib.load(
+        "model/trained_model.pkl"
+    )
 
 # Upload CSV
 uploaded_file = st.file_uploader("📂 Upload CSV File")
