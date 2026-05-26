@@ -188,7 +188,11 @@ uploaded_file = st.file_uploader("📂 Upload CSV File")
 if uploaded_file is not None:
 
     # Read CSV
-    data = pd.read_csv(uploaded_file, header=None)
+    data = pd.read_csv(
+    uploaded_file,
+    header=None,
+    nrows=5000
+)
 
     st.subheader("📊 Uploaded Dataset")
     st.dataframe(data.head())
