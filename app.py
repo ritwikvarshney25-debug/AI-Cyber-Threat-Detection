@@ -181,17 +181,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 # Load or Train Model
 
-if os.path.exists("model/trained_model.pkl"):
-
-    model = joblib.load(
-        "model/trained_model.pkl"
-    )
-
-else:
-
-    st.warning(
-        "⚠ Model file not found. Training new model..."
-    )
+model = joblib.load("model/trained_model.pkl")
 
     # Load dataset
     train_data = pd.read_csv(
