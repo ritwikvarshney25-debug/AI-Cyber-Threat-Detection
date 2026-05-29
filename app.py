@@ -187,7 +187,7 @@ if uploaded_file is not None:
     data = pd.read_csv(
     uploaded_file,
     header=None,
-    nrows=1000
+    nrows=500
 )
 
     st.subheader("📊 Uploaded Dataset")
