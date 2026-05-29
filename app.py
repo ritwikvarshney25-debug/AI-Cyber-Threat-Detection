@@ -267,7 +267,6 @@ if uploaded_file is not None:
     #     threat_count,
     #     severity
     # )
-    )
 
         st.error(
             f"⚠ {threat_count} Threats Detected in Network Traffic"
