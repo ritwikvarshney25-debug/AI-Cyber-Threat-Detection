@@ -175,10 +175,6 @@ st_autorefresh(
 st.markdown("---")
 
 
-# Load or Train Model
-
-model = joblib.load("model/trained_model.pkl")
-
    # Load trained model
 model = joblib.load("model/trained_model.pkl")
 
@@ -191,11 +187,11 @@ if uploaded_file is not None:
     data = pd.read_csv(
     uploaded_file,
     header=None,
-    nrows=5000
+    nrows=1000
 )
 
     st.subheader("📊 Uploaded Dataset")
-    st.dataframe(data.head())
+    st.write(data.head(10))
 
     # Encode categorical columns
     for col in data.columns:
@@ -267,10 +263,10 @@ if uploaded_file is not None:
             "Cyber Attack",
             severity
         )
-          
-        send_email_alert(
-        threat_count,
-        severity
+    # send_email_alert(
+    #     threat_count,
+    #     severity
+    # )
     )
 
         st.error(
